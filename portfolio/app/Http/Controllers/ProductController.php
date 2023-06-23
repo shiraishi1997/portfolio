@@ -28,12 +28,13 @@ class ProductController extends Controller
         $product-> fill($input)->save();
         return redirect('/product/'.$product->id);
     }
-    //商品編集機能
+    //商品編集画面に移動
     public function edit (Product $product)
     {
          return view('product.edit')->with(['product'=>$product]);
          
     }
+    //商品編集機能
     public function update(Request $request ,Product $product)
     {
         $input=$request['product'];
