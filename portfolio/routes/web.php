@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,11 +40,14 @@ Route::middleware('auth')->group(function () {
 Route::get('/stores/{{store}}',[StoreController::class,'view']);
 
 Route::get('/product',[ProductController::class,'index']);
+Route::get('/customer',[CustomerController::class,'index']);
 Route::get('/product/{product}',[ProductController::class,'show']);
 Route::get('/product/registar',[ProductController::class,'registar']);
 Route::post('/product',[ProductController::class,'store']);
 Route::get('/product/{product}/edit',[ProductController::class,'edit']);
 Route::put('/product/{product}',[ProductController::class,'update']);
+
+Route::get('/customer',[CustomerController::class,'index']);
 
 
 

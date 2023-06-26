@@ -14,5 +14,14 @@ class Product extends Model
         'no_tax_price'
         
     ];
+    public function orderes()
+    {
+        return $this->belongsToMany(order::class);
+    }
+    public function stores()
+    {
+        return $this->belongsToMany(store::class);
+    }
+    
     use HasFactory;
 }
