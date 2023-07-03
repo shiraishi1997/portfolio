@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'storeauth',
     ],
 
     /*
@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'storeauth',
         ],
     ],
 
@@ -63,11 +63,15 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
-        ],
+	],
+	'storeauth' => [
+             'driver' => 'eloquent',
+	     'model' => App\Models\storeauth::class,
+	],
 
         // 'users' => [
         //     'driver' => 'database',
-        //     'table' => 'users',
+        //     'table' => 'stores',
         // ],
     ],
 
@@ -92,8 +96,14 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
-        ],
-    ],
+	],
+	'storeauth'=>[
+	    'provider'=>'storeauth',
+	    'table'=>'password_resets',
+	    'expire'=>60,
+	    'throttle' =>60,
+	    ]
+    ],    
 
     /*
     |--------------------------------------------------------------------------
@@ -108,4 +118,6 @@ return [
 
     'password_timeout' => 10800,
 
-];
+ 
+    
+ ];

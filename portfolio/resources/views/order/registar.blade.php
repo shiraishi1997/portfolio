@@ -9,6 +9,9 @@
     </head>  
     
 　　<body>
+　　    <h1>商品登録</h1>
+　　    
+　　    <li>{{$customer->name}}</li>
 　　    <form action="" method="GET">
 　　     <li>電話番号または氏名で検索</li>
 　　     @csrf
@@ -24,11 +27,18 @@
 　　        <h4 class=street>番地:{{$customer->street}}</h4>
 　　        <h5 class='telephone'>{{$customer->telephone}}</h5>
 　　        <h6 class='birthday'>{{$customer->birthday}}</h6>
-　　        <a href='/order/registar/{{$customer->id}}'>新規注文登録</a>
-　　       
-　　   @endforeach
 　　    
-　　    </div>
+　　    
+　　    
+　　    
+　　    
+　　    
+　　    
+　　    
+　　    
+　　    
+　　        
+　　    
 　　    
 　　    
 　　</body>

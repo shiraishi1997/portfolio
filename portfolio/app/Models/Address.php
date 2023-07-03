@@ -12,5 +12,10 @@ class address extends Model
         return $this->belongsToMany(customer::class);   
     }
     
+    public function addresses()
+    {
+        return $this->belongsTomany(store::class);
+    }
+    
     use HasFactory;
 }

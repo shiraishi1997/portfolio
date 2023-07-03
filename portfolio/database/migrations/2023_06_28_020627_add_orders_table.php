@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-            Schema::create('address_customer', function (Blueprint $table) {
-             $table->foreignId('address_id')->constrained('addresses');
-             $table->foreignId('customer_id')->constrained('customers');
-             $table->primary(['address_id','customer_id']);
-                
-            });
-
         //
+                Schema::table('orders', function (Blueprint $table)
+                {
+                    $table->foreignId('customer_id')->constrained('customers');
+
+                });
     }
 
     /**
