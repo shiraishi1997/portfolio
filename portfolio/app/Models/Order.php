@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class order extends Model
 {
-    public function customers()
+    public function customers():BelongsTo
     {
         return $this->belongsToMany(customer::class);
         

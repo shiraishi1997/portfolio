@@ -32,6 +32,7 @@ class CustomersTableSeeder extends Seeder
                  'block'=>'block{$i}',
                  
                  
+                 
                  ]);
          }
       

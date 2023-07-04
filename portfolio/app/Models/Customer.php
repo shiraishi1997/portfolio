@@ -20,7 +20,7 @@ class customer extends Model
         return $this->belongsToMany(address::class);
     }
     */
-    public function orders()
+    public function orders():HasMany
     {
         return $this->hasMany(order::class,);
     }
