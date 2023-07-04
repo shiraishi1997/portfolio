@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class product extends Model
 {
     protected $fillable =
     [
@@ -14,9 +14,9 @@ class Product extends Model
         'no_tax_price'
         
     ];
-    public function orderes()
+   public function orders()
     {
-        return $this->belongsToMany(order::class);
+        return $this->belongsToMany(order::class,);
     }
     public function stores()
     {

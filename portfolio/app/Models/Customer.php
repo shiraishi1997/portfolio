@@ -7,14 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class customer extends Model
 {
+   protected $fiillable=
+      [
+       'name',
+       'street',
+       'telephone',
+       'birthday'
+       ];
       //中間テーブル設定
-    public function addresses()
+    /*public function addresses()
     {
         return $this->belongsToMany(address::class);
     }
-    public function orderes()
+    */
+    public function orders():HasMany
     {
-        return $this->belongsToMany(order::class);
+        return $this->hasMany(order::class,);
     }
+    
     use HasFactory;
 }

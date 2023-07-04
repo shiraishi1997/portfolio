@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
+Route::get('/store/{{store}}',[StoreController::class,'view']);
 Route::get('/top',function()
 {
     return view('top.index');
@@ -52,9 +52,6 @@ Route::get('/product/registar',[ProductController::class,'registar']);
 Route::post('/product',[ProductController::class,'store']);
 Route::get('/product/{product}/edit',[ProductController::class,'edit']);
 Route::put('/product/{product}',[ProductController::class,'update']);
-Route::get('/store/{store}',[StoreController::class,'view']);
-Route::get('/store/registar',[StoreController::class,'registar']);
-Route::post('/store',[StoreController::class,'store']);
 
 Route::get('/customer',[CustomerController::class,'index']);
 

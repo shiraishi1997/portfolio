@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-            Schema::create('customer_order', function (Blueprint $table)
-            {
-                $table->foreignId('customer_id')->constrained('customers');
-                $table->foreignId('order_id')->constrained('orders');
-                $table->primary(['customer_id','order_id']);
-            });
+        Schema::table('stores', function (Blueprint $table) {
+             $table->timestamp('email_verified_at')->nullable();
+             $table->rememberToken();
 
-        //
+            //
+        });
     }
 
     /**
@@ -30,6 +28,8 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('stores', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -20,22 +20,23 @@
             }
         </style>
     </head>     
-    <h2 class ='name'> 
-      <div>{{$store->name}}</div>
-     </h2> 
-     <h3 class='street'>
+      
 
     <body>
      <h1>登録情報一覧<\h1>
+       <h2 class ='name'> 
+     　 <div>{{$store->name}}</div>
+     　
      
-      <div>{{$store->street}}</div>
-     </h3>
-     <h4 class='telephone'>
-      <div>{{$store->telephone}}</div>
-     </h4>
-     <h5 class='email'>
-      <div>{{$store->email}}</div>
-     
+     　
+     　<div>{{$store->street}}</div>
+     　
+     　<h4 class='telephone'>
+      　<div>{{$store->telephone}}</div>
+     　</h4>
+     　<h5 class='email'>
+      　<div>{{$store->email}}</div>
+     　</h5>
      <a herf="/">トップに戻る</a herf>
     </body>
     <footer>
