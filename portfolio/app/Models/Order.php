@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Customer;
 
 class order extends Model
 {
-    public function customers():BelongsTo
+    public function customer()
     {
-        return $this->belongsToMany(customer::class);
+        return $this->belongsTo(customer::class,);
         
     }
     public function products()
@@ -24,6 +25,12 @@ class order extends Model
         $order->creat($input_order);
         $order->products()->attach($input_products);
     }
+    
+    protected $fillable =[
+        'delivery_date',
+        'ordered_date',
+        'customer_id'
+        ];
     
     use HasFactory;
 }
