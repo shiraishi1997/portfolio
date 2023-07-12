@@ -19,7 +19,7 @@ class orderseeder extends Seeder
     public function run()
     {
         //
-         customer::factory(10)->create()
+         customer::factory(5)->create()
                 ->each(function($customer){
                         order::create([
                         'customer_id'=>$customer->id,

@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
 use App\Models\Order;
-use App\Models\product;
+use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
 class OrderDuplicate extends Command
@@ -37,17 +37,13 @@ class OrderDuplicate extends Command
      */
     public function handle()
     {
-        $carbon = carbon::today();
-        $date = $carbon->subday(2);
-        //今日注文されたデータを取得してIDを取得
-        //$orders = order::whereDate('ordered_date',$date)->with('customer')->get();
+        $date = carbon::today();
+        
+        //今日注文されたデータを取得してIDを取得。
+        //その後、中間テーブルからデータを今日注文された商品を検索して取得
         $orders = order::whereDate('ordered_date',$date)->with(['products'=>function ($query)use($date){
             $query;}])->get();
-        //$order_id =array_column($orders,'id');
-        //中間テーブルからデータを今日注文された商品を検索して取得、その後IDも取得
-        //$products = db::table('order_product')->get();
-        
-        
+        //
         
         DB::beginTransaction(); 
         try {

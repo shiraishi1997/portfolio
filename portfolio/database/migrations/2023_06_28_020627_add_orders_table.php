@@ -16,10 +16,10 @@ return new class extends Migration
         //
                 Schema::table('orders', function (Blueprint $table)
                 {
-                    $table->foreignId('customer_id')->constrained('customers');
+                    $table->foreignId('customer_id')->constrained()->;
 
                 });
-    }
+    
 
     /**
      * Reverse the migrations.

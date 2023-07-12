@@ -5,26 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Customer;
+use App\Models\Product;
 
-class order extends Model
+class Order extends Model
 {
     public function customer()
     {
-        return $this->belongsTo(customer::class,);
+        return $this->belongsTo(Customer::class,'customer_id');
         
     }
     public function products()
     {
-        return $this->belongsToMany(product::class);
+        return $this->belongsToMany(Product::class)->withPivot('order_id', 'product_id');
     }
     
-    public function store(Reqest $request , Order $order)
-    {
-        $input_order =$request['order'];
-        $input_products =$request->products_array;
-        $order->creat($input_order);
-        $order->products()->attach($input_products);
-    }
+   
     
     protected $fillable =[
         'delivery_date',

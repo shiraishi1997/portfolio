@@ -7,6 +7,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CsvDownloadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,9 +57,13 @@ Route::put('/product/{product}',[ProductController::class,'update']);
 Route::get('/store/{store}',[StoreController::class,'view']);
 Route::get('/store/registar',[StoreController::class,'registar']);
 Route::post('/store',[StoreController::class,'store']);
-
+Route::put('/order/{order}',[OrderController::class,'update']);
+Route::get('/order',[OrderController::class,'index']);
+Route::get('/order/{order}/edit',[OrderController::class,'edit']);
+Route::get('/order/{order}',[OrderController::class,'show']);
+Route::delete('/order/{order}',[OrderController::class,'delete']);
 Route::get('/customer',[CustomerController::class,'index']);
-
+Route::get('/csv-download', [CsvDownloadController::class, 'exportCsv']);
 
 
 require __DIR__.'/auth.php';

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class customer extends Model
+class Customer extends Model
 {
    protected $fiillable=
       [
@@ -20,9 +20,9 @@ class customer extends Model
         return $this->belongsToMany(address::class);
     }
     */
-    public function orders():HasMany
+    public function orders()
     {
-        return $this->hasMany(order::class,);
+        return $this->hasMany(Order::class);
     }
     
     use HasFactory;
