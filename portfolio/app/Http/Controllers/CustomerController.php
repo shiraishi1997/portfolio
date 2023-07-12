@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
+use App\Models\Order;
 
 
 class CustomerController extends Controller
@@ -27,7 +28,7 @@ class CustomerController extends Controller
     {
 
      $keyword =$request->input('keyword');
-     $query=customer::query();
+     $query=Customer::query();
     
      
     if(!empty($keyword))

@@ -9,10 +9,11 @@ use Illuminate\Auth\Authenticatable;
 
 class Store extends Model 
 {
-   
+    use HasFactory;
+    use Authenticatable;
      public function addresses()
     {
-        return $this->belongsToMany(address::class);
+        return $this->belongsToMany(Address::class);
     }
     protected $fillable=
     [

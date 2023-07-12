@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Order;
 
-class product extends Model
+class Product extends Model
 {
     protected $fillable =
     [
@@ -16,11 +17,11 @@ class product extends Model
     ];
    public function orders()
     {
-        return $this->belongsToMany(order::class,);
+        return $this->belongsToMany(Order::class);
     }
     public function stores()
     {
-        return $this->belongsToMany(store::class);
+        return $this->belongsToMany(Store::class);
     }
     
     use HasFactory;
