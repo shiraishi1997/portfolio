@@ -37,12 +37,16 @@ class OrderController extends Controller
     {
 
      $keyword =$request->input('keyword');
-     $orders=Order::whereHas('customer',function($query){
+     /*$orders=Order::whereHas('customer',function($query){
          if(!empty($keyword)){
        // $query->where('telephone',"%{$keyword}%");
         $query->Where('name','like', '%'.$keyword.'%');
         }})->get();
-    
+    */
+    $orders = Order::with(['customer'=>function($query){
+        if(!empty($keyword)){
+         $query->Where('name','like', '%'.$keyword.'%');
+    }}])->get();
      //dd($orders);
      return view('order.index',compact('orders','keyword'));
     }

@@ -24,6 +24,10 @@ class CustomerController extends Controller
      $customer->create($input);
      return redirect('/customer/'.$cutomer->id);
     }
+    
+    public function show(Customer $customer){
+        return view('customer.show')->with(['customer'=>$customer]);
+    }
     public function index(Request $request)
     {
 

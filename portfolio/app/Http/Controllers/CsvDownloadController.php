@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 use App\Models\Order;
 use App\Models\Customer;
 use App\Models\Product;
-use Carbon\carbon;
+use Carbon\Carbon;
 
 class CsvDownloadController extends Controller
 {
@@ -16,12 +16,12 @@ class CsvDownloadController extends Controller
             'Content-type' => 'text/csv',
             'Content-Disposition' => 'attachment;'
         ];
-        $fileName = carbon::now()->format('Y-M-D').'orderlist.csv';
-        $date =carbon::tomorrow();
-        
-        $callback =function(){
-             $stream = fopen('php://output', 'w');
-             $head =[
+        $fileName = Carbon::now()->format('Y-M-D').'orderlist.csv';
+        $date =Carbon::parse('2023-07-04');
+        $orders = Order::whereDate('delivery_date',$date)->with(['products'=>function ($query)use($date){$query;}])->get();
+        //dd($orders);
+
+        $head =[
                  'name',
                  'postcode',
                  'prefecture',
@@ -33,20 +33,39 @@ class CsvDownloadController extends Controller
                  'product_name',
                  'no_tax_price'
                  ];
-            fputcsv($stream,$head);
-            
-            $orders = order::whereDate('delivery_date','2023-10-04')->with(['products'=>function ($query)use($date){
-            $query;}]);
-            
-            foreach($orders->cursor() as $order){
+        
+        /*foreach($orders as $order){
                 foreach($order->products as $product){
                 $content =[
-                    $order->customer()->name,
-                    $order->customer()->postcode,
-                    $order->customer()->prefecture,
-                    $order->customer()->city,
-                    $order->customer()->town,
-                    $order->customer()->block,
+                    $order->customer->name,
+                    $order->customer->postcode,
+                    $order->customer->prefecture,
+                    $order->customer->city,
+                    $order->customer->town,
+                    $order->customer->block,
+                    $order->delivery_date,
+                    $order->ordered_date,
+                    $product->name,
+                    $product->no_tax_price
+                    ];
+                }}
+                dd($orders);*/
+        $callback =function()use ($head,$orders){
+             $stream = fopen('php://output', 'w');
+             
+            fputcsv($stream,$head);
+            
+            //dd($orders);
+           
+            foreach($orders as $order){
+                foreach($order->products as $product){
+                $content =[
+                    $order->customer->name,
+                    $order->customer->postcode,
+                    $order->customer->prefecture,
+                    $order->customer->city,
+                    $order->customer->town,
+                    $order->customer->block,
                     $order->delivery_date,
                     $order->ordered_date,
                     $product->name,
@@ -56,6 +75,7 @@ class CsvDownloadController extends Controller
                 fputcsv($stream, $content);
                 }    
             }
+            
            fclose($stream);  
         };
         

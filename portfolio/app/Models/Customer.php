@@ -20,10 +20,8 @@ class Customer extends Model
         return $this->belongsToMany(address::class);
     }
     */
-    public function orders()
-    {
+    public function orders(){
         return $this->hasMany(Order::class);
     }
-    
     use HasFactory;
 }
