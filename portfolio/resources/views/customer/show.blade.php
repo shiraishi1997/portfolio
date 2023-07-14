@@ -5,21 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         
-        
+
+ 
     </head>  
-    
 　　<body>
-　　    <form action="" method="GET">
-　　     <li>電話番号または氏名で検索</li>
-　　     @csrf
-　　     　<li><input ="search" name="keyword",placeholder="電話番号（11字または10字）か氏名の一部（例：田中）を入力"</li>
-　　     　<li><input type=submit value="検索"></li>
-　　       
-　　    </form>
 　　    <h1>会員情報</h1>
-　　    <div class='customer'>
-　　    @foreach ($customers as $customer) 
-　　        
 　　        <div>名前</div>
 　　         <p class ='name'>{{$customer->name}}</p>
 　　      　<div>郵便番号</div>
@@ -34,11 +24,16 @@
 　　          <p class='telephone'>{{$customer->telephone}}</p>
 　　        <div>生年月日</div>
 　　          <p class='birthday'>{{$customer->birthday}}</p>
-　　        <a href='/customer/{{$customer->id}}'>詳細</a>
-　　       
-　　   @endforeach
-　　    
-　　    </div>
+　　  <h2>注文詳細</h2>
+　　      @foreach($customer->orders as $order)
+　　       <div>配達日</div>
+　　        <p class ='delivery_date'>{{$order->delivery_date}}</p>
+　　       <div>初回注文日</div>
+　　        <p class='ordered_date'>{{$order->ordered_date}}</p>
+　　        <div>税抜き価格</div>
+　　         <p class='no_tax_price'>{{$order->no_tax_price}}</p>
+　　        <a href = '/order/{{$order->id}}'>注文詳細</a>
+　　      `@endforeach
 　　    
 　　    
 　　</body>

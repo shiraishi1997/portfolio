@@ -38,17 +38,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-
-Route::get('/top',function()
-{
+Route::get('/csv-download', [CsvDownloadController::class, 'exportCsv']);
+Route::middleware('auth')->group(function () {
+Route::get('/top',function(){
     return view('top.index');
-    
-});
+    });
 Route::get('/order/registar/{customer}',[CustomerController::class,'registar']);
-
 Route::get('/product',[ProductController::class,'index']);
 Route::get('/customer',[CustomerController::class,'index']);
+Route::get('/customer/{customer}',[CustomerController::class,'show']);
 Route::get('/product/{product}',[ProductController::class,'show']);
 Route::get('/product/registar',[ProductController::class,'registar']);
 Route::post('/product',[ProductController::class,'store']);
@@ -63,7 +61,7 @@ Route::get('/order/{order}/edit',[OrderController::class,'edit']);
 Route::get('/order/{order}',[OrderController::class,'show']);
 Route::delete('/order/{order}',[OrderController::class,'delete']);
 Route::get('/customer',[CustomerController::class,'index']);
-Route::get('/csv-download', [CsvDownloadController::class, 'exportCsv']);
 
+});
 
 require __DIR__.'/auth.php';
