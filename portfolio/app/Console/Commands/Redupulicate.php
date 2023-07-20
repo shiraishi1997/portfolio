@@ -3,45 +3,39 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Carbon\Carbon;
-use App\Models\Order;
-use App\Models\Product;
-use Illuminate\Support\Facades\DB;
 
-class OrderDuplicate extends Command
+class Redupulicate extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'duplicate';
-    
-    protected $description='当日注文分のordersテーブルのレコード複製';
+    protected $signature = 'redupulicate';
 
     /**
      * The console command description.
      *
      * @var string
      */
-      public function __construct()
-    {   
-        parent::__construct();
-    }
-    
+    protected $description = '本日配達予定のorderテーブルのレコードを複製';
 
     /**
      * Execute the console command.
      *
      * @return int
      */
+     public function __construct()
+    {   
+        parent::__construct();
+    }
     public function handle()
     {
-        $date = carbon::today();
+         $date = carbon::today();
         
         //今日注文されたデータを取得してIDを取得。
         //その後、中間テーブルからデータを今日注文された商品を検索して取得
-        $orders = order::whereDate('ordered_date',$date)->with(['products'=>function ($query)use($date){
+        $orders = order::whereDate('delivery_date',$date)->with(['products'=>function ($query)use($date){
             $query;}])->get();
         //
         
@@ -60,40 +54,12 @@ class OrderDuplicate extends Command
                 }
             
             }
-            foreach($orders as $order){
-                   
-                 $new_order =$order->replicate();
-                 $new_order->fill([
-                 'id'=>null,
-                 'delivery_date' => date("Y-m-d",strtotime('180 days'))
-                 ])->save();
-                
-                foreach($order->products as $product){
-                $new_order->products()->attach($product->id);
-                }
-            
-            }
+           
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
             dd($e);
         }  
-            
-         
-        
-        //dd($new_orders);
-           
-           
-   
-           
-            
-            
-        
-        
-        
-        
-        
-        
         return Command::SUCCESS;
     }
 }

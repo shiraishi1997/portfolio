@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/csv-download', [CsvDownloadController::class, 'exportCsv']);
+
 Route::middleware('auth')->group(function () {
 Route::get('/top',function(){
     return view('top.index');
@@ -61,6 +61,8 @@ Route::get('/order/{order}/edit',[OrderController::class,'edit']);
 Route::get('/order/{order}',[OrderController::class,'show']);
 Route::delete('/order/{order}',[OrderController::class,'delete']);
 Route::get('/customer',[CustomerController::class,'index']);
+Route::get('/csv-download', [CsvDownloadController::class, 'exportCsv']);
+Route::post('/serchedexportCsv',[CsvDownloadController::class,'serchedexportCsv']);
 
 });
 
