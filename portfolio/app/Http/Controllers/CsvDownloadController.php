@@ -11,13 +11,16 @@ use Carbon\Carbon;
 
 class CsvDownloadController extends Controller
 {
-    public function exportCsv(){
+        public function serchedexportCsv(Request $request){
          $headers =[
             'Content-type' => 'text/csv',
             'Content-Disposition' => 'attachment;'
         ];
-        $fileName = Carbon::now()->format('Y-M-D').'orderlist.csv';
-        $date =Carbon::parse('2023-07-04');
+
+        $fileName = Carbon::now()->format('y-m-d').'orderlist.csv';
+        $keyword =$request->input('date');
+        $date =Carbon::parse($keyword);
+       // dd($date);
         $orders = Order::whereDate('delivery_date',$date)->with(['products'=>function ($query)use($date){$query;}])->get();
         //dd($orders);
 
@@ -30,33 +33,17 @@ class CsvDownloadController extends Controller
                  'block',
                  'delivery_date',
                  'ordered_date',
+                 'telephone',
                  'product_name',
                  'no_tax_price'
                  ];
         
-        /*foreach($orders as $order){
-                foreach($order->products as $product){
-                $content =[
-                    $order->customer->name,
-                    $order->customer->postcode,
-                    $order->customer->prefecture,
-                    $order->customer->city,
-                    $order->customer->town,
-                    $order->customer->block,
-                    $order->delivery_date,
-                    $order->ordered_date,
-                    $product->name,
-                    $product->no_tax_price
-                    ];
-                }}
-                dd($orders);*/
+        
         $callback =function()use ($head,$orders){
              $stream = fopen('php://output', 'w');
              
             fputcsv($stream,$head);
-            
-            //dd($orders);
-           
+        
             foreach($orders as $order){
                 foreach($order->products as $product){
                 $content =[
@@ -68,10 +55,68 @@ class CsvDownloadController extends Controller
                     $order->customer->block,
                     $order->delivery_date,
                     $order->ordered_date,
+                    $order->customer->telephone,
                     $product->name,
                     $product->no_tax_price
                     ];
-                //mb_convert_variables('SJIS', 'UTF-8', $content);
+                
+                fputcsv($stream, $content);
+                }    
+            }
+            
+           fclose($stream);  
+        };
+        
+     return response()->streamDownload($callback, $fileName, $headers);
+    //
+}
+    
+    public function exportCsv(){
+         $headers =[
+            'Content-type' => 'text/csv',
+            'Content-Disposition' => 'attachment;'
+        ];
+        $fileName = Carbon::now()->format('y-m-d').'orderlist.csv';
+        $date = Carbon::tomorrow();
+        $orders = Order::whereDate('delivery_date',$date)->with(['products'=>function ($query)use($date){$query;}])->get();
+        //dd($orders);
+
+        $head =[
+                 'name',
+                 'postcode',
+                 'prefecture',
+                 'city',
+                 'town',
+                 'block',
+                 'delivery_date',
+                 'ordered_date',
+                 'telephone',
+                 'product_name',
+                 'no_tax_price'
+                 ];
+        
+        
+        $callback =function()use ($head,$orders){
+             $stream = fopen('php://output', 'w');
+             
+            fputcsv($stream,$head);
+        
+            foreach($orders as $order){
+                foreach($order->products as $product){
+                $content =[
+                    $order->customer->name,
+                    $order->customer->postcode,
+                    $order->customer->prefecture,
+                    $order->customer->city,
+                    $order->customer->town,
+                    $order->customer->block,
+                    $order->delivery_date,
+                    $order->ordered_date,
+                    $order->customer->telephone,
+                    $product->name,
+                    $product->no_tax_price
+                    ];
+                
                 fputcsv($stream, $content);
                 }    
             }

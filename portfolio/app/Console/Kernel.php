@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command(OrderDuplicate::class)->daily();
+        $schedule->command(Redupulicate::class)->daily();
         // $schedule->command('inspire')->hourly();
     }
 
@@ -31,6 +32,7 @@ class Kernel extends ConsoleKernel
         require base_path('routes/console.php');
     }
     protected $commands =[
-        Commands\OrderDuplicate::class
+        \App\Console\Commands\OrderDuplicate::class,
+        \App\Console\Commands\Redupulicate::class
         ];
 }
