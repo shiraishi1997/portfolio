@@ -1,46 +1,41 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        
-        
-    </head>  
-    
-　　<body>
-　　    <form action="" method="GET">
-　　     <li>電話番号または氏名で検索</li>
-　　     @csrf
-　　     　<li><input ="search" name="keyword",placeholder="電話番号（11字または10字）か氏名の一部（例：田中）を入力"</li>
-　　     　<li><input type=submit value="検索"></li>
-　　       
-　　    </form>
-　　    <h1>会員情報</h1>
-　　    <div class='customer'>
+@extends('layout.common')
+@section('content')
+　　     <h1>氏名検索（一部のみでも可）</h1>
+　　      <form class="input-group">>
+    　　      @csrf
+            <input type ="text" name ="keyword" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-success" type="submit">検索リセット</button>
+        　</form>
+　　    <h2>会員情報</h2>
+　　    <table class="table">
+　　          <thead>
+                  <tr>
+　　               <th scope ="col">名前</th>
+　　               <th scope="col">郵便番号</th>
+　　               <th scope="col">都道府県</th>
+　　               <th scope="col">市区町村</th>
+　　               <th scope="col">番地</th>
+　　               <th scope="col">電話番号</th>
+　　               <th scope="col">生年月日</th>
+　　               <th scope="col">過去注文歴</th>
+　　           </tr>
+           </thead>
+         <tbody>
 　　    @foreach ($customers as $customer) 
-　　        
-　　        <div>名前</div>
-　　         <p class ='name'>{{$customer->name}}</p>
-　　      　<div>郵便番号</div>
-        　　    <p class ='postcode'>{{$customer->postcode}}</p>
-        　　<div>都道府県</div>
-        　　    <p class ='prefecture'>{{$customer->prefecture}}</p>
-        　　<div>市区町村</div>
-        　　    <p class ='city'>{{$customer->city}}</p>
-        　　<div>番地</div>
-　　          <p class=street>{{$customer->street}}</p>
-　　        <div>電話番号</div>
-　　          <p class='telephone'>{{$customer->telephone}}</p>
-　　        <div>生年月日</div>
-　　          <p class='birthday'>{{$customer->birthday}}</p>
-　　        <a href='/customer/{{$customer->id}}'>詳細</a>
-　　       
+　　        <tr>
+　　               <th scope="col">{{$customer->name}}</th>
+　　               <th scope="col">{{$customer->postcode}}</th>
+　　               <th scope="col">{{$customer->prefecture}}</th>
+　　               <th scope="col">{{$customer->city}}</th>
+　　               <th scope="col">{{$customer->street}}</th>
+　　               <th scope="col">{{$customer->telephone}}</th>
+　　               <th scope="col">{{$customer->birthday}}</th>
+　　               <th scope="col" ><a href='/customer/{{$customer->id}}'>詳細</a></th>
+　　               
+　　           
+　　        </tr>
 　　   @endforeach
-　　    
-　　    </div>
-　　    
-　　    
-　　</body>
-
-　</html>
+　　    </tbody>
+　　   </table>
+@endsection

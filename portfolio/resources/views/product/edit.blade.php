@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout.common')
+@section('content')
 
-        
-        
-    </head>  
-    
-　　<body>
 　　    <h1>商品編集</h1>
 　　    <form action = "/product/{{$product->id}}" method="POST">
 　　        @csrf
@@ -29,8 +21,4 @@
 　　        <input type="submit" value="編集完了"/>
 　　        
 　　    </form>
-　　    
-　　    
-　　</body>
-
-　</html>
+@endsection

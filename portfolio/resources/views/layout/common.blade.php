@@ -6,7 +6,6 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
         
-     
     </head>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -26,32 +25,7 @@
                 </div>
             </div>
          </nav>
-    </header>
-    <body>
-        <a href ='/top'>Topに戻る</a>
-　　   <div>注文処理・注文データダウンロード</div>
-　　   　<p>明日到着分注文処理</p>
-　　      <button type="button" value="テスト" onClick="disp()">CSVダウンロード</button>
-    　　   <p>日付指定注文処理・注文データダウンロード</p>
-        　　 <form action ='/serchedexportCsv' method ="POST">
-        　　   @csrf 
-        　　   <input type ="date" name='date'>
-        　　   <button type ="submit" value ="ダウンロード"> ダウンロード</button>
-        　　   </form>
-        <script>
-        　 function disp(){
-        　　 if(window.confirm("CSVデータをダウンロードしますか？")){
-        　　   　   location.href = "/csv-download";
-        　　   　     }else{
-        　　   　     window.alert('キャンセルされました');   
-        　　   　        }
-        　　 }
-        </script>
-
-        <a href = '/product'></a>
-        <a href ='/customer'>顧客・購入情報</a>
-    </body>
-　　
-　　
-
-　</html>
+     </header>
+     <body>
+         @yield('content')
+     </body>

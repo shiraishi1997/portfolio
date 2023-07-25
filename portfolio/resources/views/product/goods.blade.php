@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        
-        
-    </head>  
-    
+@extends('layout.common')
+@section('content')
 　　<body>
 　　    <h1>登録商品</h1>
 　　    
@@ -22,8 +14,4 @@
 　　        </div>
 　　        
 　　    </form>
-　　    
-　　    
-　　</body>
-
-　</html>
+@endsection
