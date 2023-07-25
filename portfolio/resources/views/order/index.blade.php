@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        
-        
-    </head>  
-    
-　　<body>
+@extends('layout.common')
+@section('content')
 　　    <form action="/order" method="GET">
 　　     <li>電話番号または氏名で検索</li>
-　　     @csrf
+　　     
 　　     　<li><input ="search" name="keyword",placeholder="電話番号（氏名の一部（例：田中）を入力" value ="{{$keyword}}"></li>
 　　     　<li><input type=submit value="検索"></li>
 　　       
 　　    </form>
+　　   
 　　    
 　　   @foreach($orders as $order)
 　　        <h1 class ='customer'>会員情報</h1>
@@ -51,10 +43,10 @@
               <a href ='/order/{{$order->id}}'>注文編集・削除</a>
         
         @endforeach
-            
+@endsection
             
         　　  　   
-　　   
+　　  
 　　    
 　　    
 　　    
