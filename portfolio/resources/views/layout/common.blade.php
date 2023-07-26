@@ -16,16 +16,33 @@
                             <a class="nav-link active" aria-current="page" href="/top">Home</a>
                         </li>
                         <li class="nav-item">
+                          <a class="nav-link" href="/csv">出荷用CSVデータダウンロード</a>
+                        </li>
+                        <li class="nav-item">
                           <a class="nav-link" href="/product">商品情報編集</a>
                         </li>
                         <li>
                           <a class="nav-link" href="/customer">顧客情報・購入情報</a>
                         </li>
-                       
-                </div>
+                        <li>
+                           <a class="nav-link" href="route('profile.edit')">会員情報編集</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                               <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                         <a href="route('logout')"
+                                    onclck="event.preventDefault();
+                                                this.closest('form').submit();">
+                                             {{ __('Log Out') }}
+                                </a></form></li>
+                            </ul>
+                        </li>
+                </div>      
             </div>
          </nav>
      </header>
      <body>
          @yield('content')
      </body>
+ </html>
