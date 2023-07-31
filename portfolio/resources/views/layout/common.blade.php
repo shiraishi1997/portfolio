@@ -8,7 +8,7 @@
         
     </head>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info ">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -25,19 +25,12 @@
                           <a class="nav-link" href="/customer">顧客情報・購入情報</a>
                         </li>
                         <li>
-                           <a class="nav-link" href="route('profile.edit')">会員情報編集</a>
+                           <a class="nav-link" href='/profile'>会員情報編集</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
-                               <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                         <a href="route('logout')"
-                                    onclck="event.preventDefault();
-                                                this.closest('form').submit();">
-                                             {{ __('Log Out') }}
-                                </a></form></li>
-                            </ul>
+                            <a class="nav-link" href='/logout'>logout</a>
                         </li>
+                    </ul>
                 </div>      
             </div>
          </nav>

@@ -1,8 +1,8 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
+    <x-slot name="header" class='float'>
+        <h3 class="font-semibold text-xl flex:light text-gray-800 leading-tight"><a href ='/top'>
+              {{ __('TOPに戻る') }}
+        </a></h3>
     </x-slot>
 
     <div class="py-12">
