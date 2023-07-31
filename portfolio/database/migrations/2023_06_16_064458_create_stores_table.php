@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
-            $table->char('name',100)->nullable(false);
-            $table->char('street')->nullable(false);
-            $table->char('block');
+            $table->string('name',100)->nullable(false);
             $table->char('telephone',15)->nullable(false);
             $table->char('email',100)->nullable(false);
+            $table->char('password')->nullable(false);
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken()->nullable();
             $table->timestamps();
         });
     }

@@ -19,8 +19,6 @@ class Order extends Model
         return $this->belongsToMany(Product::class)->withPivot('order_id', 'product_id');
     }
     
-   
-    
     protected $fillable =[
         'delivery_date',
         'ordered_date',

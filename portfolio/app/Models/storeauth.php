@@ -22,7 +22,9 @@ class storeauth extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'telephone',
         'password',
+        
     ];
 
     /**

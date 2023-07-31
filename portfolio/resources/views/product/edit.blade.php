@@ -5,20 +5,18 @@
 　　    <form action = "/product/{{$product->id}}" method="POST">
 　　        @csrf
 　　        @method("put")
-　　        <div class ="name">
-　　        　<h2>商品名</h2>
-　　        　<input type ="text" name ="product[name]" value="{{$product->name}}">
+　　        <div class="mb-3">
+　　            <label for="exampleInputEmail1" class="form-label">商品名</label>
+　　            <input type ="text" class="form-control" name ="product[name]" value="{{$product->name}}">
 　　        </div>
-　　        <dic class ="detail">
-　　           <h3>商品詳細</h3>
-　　           <textarea name="product[detail]" value = "{{$product->detail}}"></textarea>
+　　         <div class="mb-3">
+　　             <label for="exampleInputPassword1" class="form-label">商品詳細</label>
+　　           <textarea name="product[detail]"  class="form-control" value = "{{$product->detail}}"></textarea>
 　　        </dic>
-　　        <div class ="no_tax_price">
-　　        　<h4>税抜き価格</h4>
-　　        　<input type="number" name = "product[no_tax_price]" value = "{{$product->no_tax_price}}">
+　　        <div class ="mb-3">
+　　            <label for="exampleInputPassword1" class="form-label">商品詳細</label>
+　　          　<input type="number" class="form-control" name = "product[no_tax_price]" value = "{{$product->no_tax_price}}">
 　　        </div>
-　　        
 　　        <input type="submit" value="編集完了"/>
-　　        
 　　    </form>
 @endsection

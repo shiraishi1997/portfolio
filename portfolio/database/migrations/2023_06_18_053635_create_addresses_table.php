@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->char('postcode',7)->nullable(false);
-            $table->char('prefecture',10)->nullable(false);
-            $table->char('city',10)->nullable(false);
-            $table->char('town',15)->nullable(false);
-            $table->char('prefecture_kana',50)->nullable(false);
-            $table->char('city_kana',50);
-            $table->char('town_kana',50);
+            $table->string('prefecture',10)->nullable(false);
+            $table->string('city',10)->nullable(false);
+            $table->string('town',15)->nullable(false);
+            $table->string('prefecture_kana',50)->nullable(false);
+            $table->string('city_kana',50);
+            $table->string('town_kana',50);
             $table->timestamps();
         });
     }

@@ -17,6 +17,7 @@ class StoreController extends Controller
     }
      public function store (Request $request ,Store $store)
     {
+        $user = $request->user();
         $input=$request['store'];
         $store-> fill($input)->save();
         return redirect('/store/'.$store->id);

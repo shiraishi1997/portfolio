@@ -8,7 +8,7 @@
         
     </head>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info ">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -16,16 +16,26 @@
                             <a class="nav-link active" aria-current="page" href="/top">Home</a>
                         </li>
                         <li class="nav-item">
+                          <a class="nav-link" href="/csv">出荷用CSVデータダウンロード</a>
+                        </li>
+                        <li class="nav-item">
                           <a class="nav-link" href="/product">商品情報編集</a>
                         </li>
                         <li>
                           <a class="nav-link" href="/customer">顧客情報・購入情報</a>
                         </li>
-                       
-                </div>
+                        <li>
+                           <a class="nav-link" href='/profile'>会員情報編集</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href='/logout'>logout</a>
+                        </li>
+                    </ul>
+                </div>      
             </div>
          </nav>
      </header>
      <body>
          @yield('content')
      </body>
+ </html>
