@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('stores', function (Blueprint $table) {
-             $table->timestamp('email_verified_at')->nullable()->change();
-             $table->rememberToken()->nullable()->change();
-
-            //
+        Schema::create('order_product', function (Blueprint $table) {
+            
+            $table->foreignId('order_id')->constrained('orders');
+            $table->foreignId('product_id')->constrained('products');
         });
     }
 
@@ -28,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('stores', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('order_product');
     }
 };
