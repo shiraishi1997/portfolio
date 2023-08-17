@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command(OrderDuplicate::class)->daily();
-        $schedule->command(Redupulicate::class)->daily();
+        $schedule->command('OrderDuplicate')->daily();
+        $schedule->command('Redupulicate')->daily();
         // $schedule->command('inspire')->hourly();
     }
 
