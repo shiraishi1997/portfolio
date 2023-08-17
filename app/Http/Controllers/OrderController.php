@@ -31,6 +31,6 @@ class OrderController extends Controller
     public function delete (Order $order){
         $order->products()->detach();
         $order->delete();
-        return redirect('/order');
+        return redirect('/customer');
     }
 }
